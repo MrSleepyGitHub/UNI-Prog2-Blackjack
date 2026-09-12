@@ -1,6 +1,4 @@
 public class Player extends Person {
-    private String name;
-    private Hand hand;
 
     public Player(String name) {
         super(name);
