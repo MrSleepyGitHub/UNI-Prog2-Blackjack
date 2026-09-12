@@ -1,4 +1,4 @@
-public class Player {
+public class Player implements Person {
     private String name;
     private Hand hand;
 
@@ -7,12 +7,20 @@ public class Player {
         hand = new Hand();
     }
 
+    /** (non-Javadoc)
+     * @see Person#drawCard(Deck)
+     */
+    @Override
     public void drawCard(Deck deck) {
         hand.add(deck.removeCard());
         if (hand.busted())
             System.out.println(name + " busts with " + hand + "!");
     }
 
+    /** (non-Javadoc)
+     * @see Person#haveTurn(Deck)
+     */
+    @Override
     public void haveTurn(Deck deck) {
         char choice;
         while (!hand.busted() && (choice = readChoice()) != 's') {
@@ -41,6 +49,9 @@ public class Player {
         System.out.println("s = stand");
     }
 
+    /** (non-Javadoc)
+     * @see Person#toString()
+     */
     @Override
     public String toString() {
         return name + " has " + hand;

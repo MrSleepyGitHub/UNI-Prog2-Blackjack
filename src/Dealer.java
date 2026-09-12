@@ -27,7 +27,7 @@ public class Dealer {
     }
 
     private void deal() {
-        for (Player player : players)
+        for (Person player : players)
             player.drawCard(deck);
         drawCard(deck);
     }
@@ -40,7 +40,7 @@ public class Dealer {
 
     private void goRound() {
         System.out.println(this);
-        for (Player player : players)
+        for (Person player : players)
             player.haveTurn(deck);
         haveTurn(deck);
     }
