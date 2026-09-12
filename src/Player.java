@@ -1,25 +1,11 @@
-public class Player implements Person {
+public class Player extends Person {
     private String name;
     private Hand hand;
 
     public Player(String name) {
-        this.name = name;
-        hand = new Hand();
+        super(name);
     }
 
-    /** (non-Javadoc)
-     * @see Person#drawCard(Deck)
-     */
-    @Override
-    public void drawCard(Deck deck) {
-        hand.add(deck.removeCard());
-        if (hand.busted())
-            System.out.println(name + " busts with " + hand + "!");
-    }
-
-    /** (non-Javadoc)
-     * @see Person#haveTurn(Deck)
-     */
     @Override
     public void haveTurn(Deck deck) {
         char choice;
@@ -47,13 +33,5 @@ public class Player implements Person {
         System.out.println("Player menu options:");
         System.out.println("d = draw");
         System.out.println("s = stand");
-    }
-
-    /** (non-Javadoc)
-     * @see Person#toString()
-     */
-    @Override
-    public String toString() {
-        return name + " has " + hand;
     }
 }

@@ -1,10 +1,26 @@
 
-public interface Person {
+public abstract class Person {
 
-    void drawCard(Deck deck);
+    protected String name;
+    protected Hand hand;
 
-    void haveTurn(Deck deck);
+    public Person(String name){
+        this.name = name;
+        this.hand = new Hand();
+    }
 
-    String toString();
+    public void drawCard(Deck deck){
+        hand.add(deck.removeCard());
+        if (hand.busted()){
+            System.out.println(name+ " busts with " + hand + "!");
+        }
+    }
+
+    public  abstract void haveTurn(Deck deck);
+
+    @Override
+    public String toString() {
+        return name + " has " + hand;
+    }
 
 }

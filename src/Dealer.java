@@ -1,14 +1,13 @@
 import java.util.*;
 
-public class Dealer {
+public class Dealer extends Person{
     public static void main(String[] args) { new Dealer().use(); }
     private Deck deck;
-    private Hand hand;
     private LinkedList<Player> players = new LinkedList<Player>();
 
     public Dealer() {
+        super("Dealer");
         deck = new Deck();
-        hand = new Hand();
         players.add(new Player("Jack"));
         players.add(new Player("Jill"));
     }
@@ -32,12 +31,6 @@ public class Dealer {
         drawCard(deck);
     }
 
-    private void drawCard(Deck deck) {
-        hand.add(deck.removeCard());
-        if (hand.busted())
-            System.out.println("Dealer busts with " + hand + "!");
-    }
-
     private void goRound() {
         System.out.println(this);
         for (Person player : players)
@@ -45,7 +38,8 @@ public class Dealer {
         haveTurn(deck);
     }
 
-    private void haveTurn(Deck deck) {
+    @Override 
+    public void haveTurn(Deck deck) {
         while (hand.value() < 17)
             drawCard(deck);
     }
@@ -55,10 +49,5 @@ public class Dealer {
             System.out.println(this);
         for (Player player : players)
             player.decide(hand);
-    }
-
-    @Override
-    public String toString() {
-        return "Dealer has " + hand;
     }
 }
